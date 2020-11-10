@@ -10,6 +10,8 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.junit.Assert;
 
+import java.util.Map;
+
 public class LoginStepDefs {
 
     @Given("user on the login page")
@@ -34,5 +36,11 @@ public class LoginStepDefs {
         Assert.assertEquals(expectedTitle,actualTitle);
     }
 
+    @When("user should able to login with following credential")
+    public void user_should_able_to_login_with_following_credential(Map<String,String> userInfo) {
+        String user=userInfo.get("email");
+        String password=userInfo.get("password");
+        new LoginPage().logIn(user,password);
+    }
 
 }
